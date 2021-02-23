@@ -6,8 +6,8 @@ use std::error::Error;
 use std::fmt::{Display, Debug, Result as FmtResult, Formatter};
 
 pub struct Request {
-    path: String,
-    query_string: Option<String>,
+    path: &str,
+    query_string: Option<&str>,
     method: Method,
 }
 
@@ -42,7 +42,11 @@ impl TryFrom<&[u8]> for Request {
 
 	}
 
-	unimplemented!()
+	Ok(Self{
+	    path,
+	    query_string,
+	    method
+	})
     }
 }
 
